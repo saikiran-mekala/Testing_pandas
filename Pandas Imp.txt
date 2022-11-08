@@ -1,0 +1,249 @@
+
+pip install pandas
+import pandas as pd
+d1 =pd.read_csv('path') #reading the csv file
+d1.head(10) #read top 10 files
+d1.info()   #information of the files
+d1.isnull() #finding the null values
+d1.isnull().sum() # finding the sum of the null files
+d1.dropna()     #Removing null values/droping null values in column(Removing rows with axis=1)
+d1.shape() # now the  shape ( rows and columns of the file)
+d1[d1['Column_name'].isnull()]     ##finding the individual column null values
+d1.dropna(how='any', inplace=True) ##d1.dropna(how='any', inplace=True)
+d1.to_csv('')  # # Saving the updated the file
+d3=pd.merge(d1,d2, left_on='User ID', right_on='User ID')   #Merging multiple files using column_name
+d1.columns   #finding the columns header
+d1.drop(['Unnamed: 0_x', 'Unnamed: 0_y'], axis=1, inplace=True)   # Droping unwanted columns
+Sentiment={'heart':'positive', 
+           'want':'positive', 
+           'disgust':'negative', 
+           'hate':'negative'}    ##Creating a dictionary( adding value to the key for existing column)
+d1['Sentiment']=d6['Column_name'].map(Sentiment)  ##adding columns to the existing file with the help of dictionary(key:value pair)
+
+Score={'heart':60, 
+           'want':70, 
+           'disgust':0, 
+           'hate':5, 
+           'interested':30,  
+           'worried':12}   # ##Creating a dictionary( adding value to the key for existing column)
+d1['Score']=d6['Type'].map(Score)  ###adding columns to the existing file with the help of dictionary(key:value pair)
+
+B3=['User ID', 'Name', 'Email',  'Age', 'Address'] 
+B2=B2[B3]    # rearranging the columns with the help of list
+
+B2[B2['Category']=="studying"] # filtering column based on word
+B2['Column_name'].nunique()  # finding unique values count 
+B2['Column-name'].value_counts()  #Find the value count 
+Total_score=B2.groupby(['Category'], as_index=False)['Score'].sum() #grouping by colummn name and finding the total sum using another score
+Chinna=Total_score.sort_values('Score', ascending=False).head(5)  #sorting based on score column
+
+
+import os                                 # appending files from OS
+import pandas as pd
+
+d1=pd.DataFrame()
+for file in os.listdir(os.getcwd()):
+    if file.endswith('.csv):
+        d1=d1.append(pd.read_csv(file)
+    elif file.endswith('.xlsx'):
+        d1=d1.append(pd.read_csv(file)
+
+d1.dropna(subset=['Column1', 'Column2'], how='all')     #droping nulls values based on multiple columns
+d1.drop(columns=['Column1', 'Column2'], inplace=True)  #Drping unwanted columns
+d1.groupby['Coulmn']['Column2'].count()  #Grouping and counting
+d1.groupby['Coulmn']['Column2'].count().reset_index()  # reseting the index
+d3=pd.merge(left=d1, right=d2, how='left', left_on="id', right_on='id')   # left join
+d3=pd.merge(left=d1, right=d2, how='right', left_on="id', right_on='id')  #Right join
+d3=pd.merge(left=d1, right=d2, how='inner', left_on="id', right_on='id')  
+d3=pd.merge(left=d1, right=d2, how='outer', left_on="id', right_on='id')   #outer or full join
+def sai(d1,col):
+   for i, row in d1.iterrows():
+        val=row[cl]
+        if val<5:
+           d1.at[i,col]=0      #changing the values 
+def sai():
+   country=[]
+   for i, r in d1.iterrows():
+        
+       country.append(r['column_name])
+one to one(Relation)
+df.replace(to_replace=2, value=20)
+many to one(Relation)
+d1.replace(to_replace=[1,3,5], value=20)
+Many(one to one)
+d1.replace(to_replace=[1,3,5], value=[20,30,45])
+d1.replace(to_replace={'Column':{5:10}}, value=None) #replace values based on column
+d1.replace(to_replace={'Column':{5:10, 12:25}, 'Column2:{25:10, 12:205}}, value=None)  #replace based on multiple columns
+pd.get_dummies(d1, columns=['Column_name'])                     #Unpivoting( Creating a dummy indicator)
+pd.get_dummies(d1, columns=['Column_name'], drop_first=True)   #Creating a dummy indicator column droping firstvariable
+d1['new_Column']= d1.iloc[:, 4:10].sum(axis=1)        # Adding new column based on summing the existing column with slicing
+d1.loc[d1['Column_name'].str.contains('Mega')]            # Finding based on strings
+import re
+d1.loc[d1['Column_name'].str.contains('Mega/grass', flags=re.I, regex=True)]
+d2=d1.copy() #copying a dataframe
+d1[d1['Column_name'].isin(['Mega'])] #to show all records of a particular item in any column
+d['Year']=d['Column_name'].dt.year    #to create new year column:consider only year
+d[['min', 'unit']]=d['Colmn_name].str.split(' ', expand=True)
+
+
+
+
+Pandas (Big Data)
+import pandas as pd
+
+d1 =pd.read_csv('path')
+d1["Column_name"].unique()                  #finding the unique elements in the column
+
+//// if elements having the space than use  (((Strip)))
+
+d1['Column_name'].str.strip()           #removing the unwanted spaces( Stripping the spaces)
+
+d1["Column_name"].unique()
+
+d1[d1['Column_name']=='unique element']    # Sorting with respective unique elements
+
+d1[d1['Column_name'].between(50,60)]     #Using between function to sort in sample range of 50 to 60 (example)
+
+d1[d1['Column_name'].isin(['sai','kiran','yadav'])]    #Using isin function to sort with the unique key elements in the column
+
+d1[['Column1', 'Column2', Column3']]              # Displacying only the required columns
+
+d1.filter(regex="^s")         # using filter function to find elements in the sheet starting with the character 's'  ///With respect to the column
+
+
+d1.filter(regex="n$")         # using filter function to find elements in the sheet ending  with the character 'n'  ///With respect to the column
+
+
+d1.sample(n=1)               # using sample function to list a row ////every sample it returns different data ///n can be in any range
+
+
+d1.sample(frac=0.25)          #using sample function to list a row //// with frac using returning 25% of data
+
+d1.to_dict()       # converting to dict
+
+d1.to_json("abc.json")       # converting to json  and saving as abc.json
+
+d1.to_html("abc.html")       # converting to json  and saving as abc.html
+
+d1.to_excel("abc.xlsx")       # converting to excel  and saving as abc.xlsx
+
+d1.iloc[541]                 # finding with respect to row using id number 541
+d1.iloc[[541,145,451,415]]     # multiple rows
+d1.iloc[10:50]                # in the range
+
+d2=pd.read_csv("sai.csv", index_col=['Column_name'])    #indexing wrt column
+
+d2.loc['unique_element']         #finding withe respect to row by using unique elemnt
+d2.loc[['unique_element1', 'unique_element2']
+d2.loc[['unique_element1', 'unique_element2']['Column_name']
+d2.loc[['unique_element1', 'unique_element2'][['Column_name1', 'Column_name2']]
+d2.loc['India':'Australia']          #range 
+
+
+d2=pd.read_csv("sai.csv", index_col=['Column_name1', "Column_name2"])   #indexing multiple columns
+d2.set_index('Column_name1','Column_name2')
+d2.set_index(['Column_name1','Column_name2'], inplace=True)
+
+
+d1.transpose()      #transposing the rows and columns
+
+d1.stack()
+d1.unstack(1)
+
+d1.pivot_table(index='Country', columns='Continent')    # Pivoting
+d1.pivot_table(index='Country', columns='Continent', value=["beer_serving'])
+d1.pivot_table(index='Country', columns='Continent', value=["beer_serving','qotor_serving'])
+d1.pivot_table(index='Country', columns='Continent', value=["beer_serving'], aggfunc="sum")
+
+
+import datetime as dt
+sai=dt.date.today()
+sai.day
+sai.month
+sai.year
+sai.isoweekday()
+
+sai1=dt.datetime.now()
+sai1.hour
+sai1.minute
+sai1.second
+
+pd.Timestamp(today)
+pd.Timestamp("2022-11-8")
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
